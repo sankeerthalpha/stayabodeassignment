@@ -1,0 +1,10 @@
+<html>
+    <h1>Update Task {{ task.id }}</h1>
+    <form action="{% url 'todolist:updateTask' %}" method="post">
+        {% csrf_token %}
+        <label>Task: </label>
+        <input type="hidden" name="taskid" value="{{ task.id }}"/>
+        <input type="text", name="updatetask" value="{{ task.title }}"/>
+        <input type="submit" name="addsubmit" value="submit"/>
+    </form>
+</html>

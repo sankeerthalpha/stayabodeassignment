@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>To-do List Status Report</title>
+</head>
+<body>
+<h1>To-do list status report</h1>
+<p><a href="{% url 'todolist:addForm' %}">Add New Task</a></p>
+{% for list_dict in todo_listing %}
+<ul>
+    <li>
+        <h2>{{ list_dict.list_object.title }}</h2>
+        <a href="{% url 'todolist:deleteTask' list_dict.list_object.id%}">Delete</a>
+        <a href="{% url 'todolist:updateForm' list_dict.list_object.id%}">Update</a>
+    </li>
+</ul>
+
+<ul>
+    <li>Number of items: {{ list_dict.item_count }}</li>
+    <li>Number completed: {{ list_dict.items_complete }} ({{ list_dict.percent_complete }}%)</li>
+</ul>
+{% endfor %}
+</body>
+</html>
